@@ -11,7 +11,7 @@ Files needed in your Project directory.
 ```sh
 project
 │   Dockerfile
-│  docker-compose.yml
+│   docker-compose.yml
 │   release.sh
 │   build.sh
 │   parse.py
