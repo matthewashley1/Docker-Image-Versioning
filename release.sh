@@ -1,4 +1,4 @@
-# Must run within its DIRECTORY.
+# Must run within its DIRECTORY
 
 set -ex
 
@@ -18,15 +18,24 @@ docker image inspect $USERNAME/$IMAGE >image.json
 oldest="$(python parse.py)"
 echo "OLD VERSION: $oldest"
 
+# Removes image.json file after being parsed
+rm image.json
+
 # Run image latest build
 sh build.sh
 
-# Removes old image verion 
-docker image rm $oldest
+# Checks for an existing old version image before deleting
+if [ -z "$oldest" ] || [ "$oldest" == "None" ]
+then
+    echo "Is equal to None"
+else
+    # Removes old image verion
+    docker image rm $oldest
+fi
 
 # Tags newly built image to latest and new version number
 docker tag $USERNAME/$IMAGE:latest $USERNAME/$IMAGE:$version
 
-# Push Latest & New version
+# Push Latest & New Version
 docker push $USERNAME/$IMAGE:latest
 docker push $USERNAME/$IMAGE:$version
