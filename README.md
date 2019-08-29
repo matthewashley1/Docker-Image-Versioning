@@ -13,13 +13,11 @@ project
 │   Dockerfile
 │   docker-compose.yml
 │   release.sh
-│   build.sh
 │   parse.py
 │   VERSION
 ```
 
 - release.sh  > Start script file, manages the build, remove, and upload of an image.
-- build.sh  > Rebuilds Docker image.
 - parse.py  > Gets image id number of old version image.
 - VERSION  > Current working version number - must set yourself.
 

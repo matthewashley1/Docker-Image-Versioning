@@ -6,7 +6,7 @@ set -ex
 # Docker hub username
 USERNAME=<Docker Username>
 # Image name
-IMAGE=<Image name>
+IMAGE=<Image Name>
 
 version=`cat VERSION`
 echo "version: $version"
@@ -21,8 +21,8 @@ echo "OLD VERSION: $oldest"
 # Removes image.json file after being parsed
 rm image.json
 
-# Run image latest build
-sh build.sh
+# Builds lastest image
+docker build -t $USERNAME/$IMAGE:latest .
 
 # Checks for an existing old version image before deleting
 if [ -z "$oldest" ] || [ "$oldest" == "None" ]
